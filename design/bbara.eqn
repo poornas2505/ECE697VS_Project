@@ -1,5 +1,4 @@
-INORDER = bbara_in_3_ bbara_in_2_ bbara_in_1_ bbara_in_0_ clock n_n60 n_n61 
-n_n62 n_n63;
+INORDER = bbara_in_3_ bbara_in_2_ bbara_in_1_ bbara_in_0_ clock n_n60 n_n61 n_n62 n_n63;
 OUTORDER = n_n23 clock n_n24 n_n25 n_n26 bbara_out_1_ bbara_out_0_;
 bbara_out_1_ = !n_n61*n_n63*[27];
 bbara_out_0_ = n_n61*n_n63*[36];
@@ -15,8 +14,7 @@ n_n26 = [182] + [14];
 [31] = bbara_in_1_*bbara_in_0_*!n_n61 + !n_n60*n_n61;
 [43] = bbara_in_3_*!bbara_in_2_*[175] + bbara_in_3_*!bbara_in_2_*[21];
 [174] = n_n62*!bbara_in_2_;
-[177] = bbara_in_1_*bbara_in_0_*!n_n61*[24] + !bbara_in_0_*n_n61 + !
-bbara_in_1_*n_n61;
+[177] = bbara_in_1_*bbara_in_0_*!n_n61*[24] + !bbara_in_0_*n_n61 + !bbara_in_1_*n_n61;
 [37] = !bbara_in_0_*n_n62 + !bbara_in_1_*n_n62;
 [38] = bbara_in_3_*!n_n62*!n_n63*[179];
 [39] = !bbara_in_3_*!n_n60*n_n62 + !bbara_in_3_*[40];
