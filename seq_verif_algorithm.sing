@@ -1,0 +1,56 @@
+LIB "teachstd.lib";
+LIB "general.lib";
+LIB "schubert.lib";
+LIB "findifs.lib";
+ring r = (4,a),(x,s0,s1,t0,t1,S,T),lp;
+ideal from, to, new;
+ideal reached;
+ideal J;
+ideal G;
+ideal J0 = T^4+T;
+ideal ideal_quotient;
+ideal temp;
+poly f1 = t0+(x*s0*s1+x*s0+x*s1+x+s0+s1+1);
+poly f2 = t1+(x*s0+x+s0*s1+s0);
+poly f3 = S+s0+s1*a;
+poly f4 = T+t0+t1*a;
+poly f5 = x^2-x;
+poly f6 = s0^2-s0;
+poly f7 = s1^2-s1;
+poly f8 = t0^2-t0;
+poly f9 = t1^2-t1;
+poly f10 = S^4-S;
+poly f11 = T^4-T;
+ideal poly_func = f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11;
+
+from[1] = S-0;
+reached = subst(from[1],S,T);
+reached;
+int i = 0;
+while(1){
+    i++;
+	J = poly_func,from[i];
+    G = groebner(J);
+	G;
+	to[i] = G[1];
+	"To ", i;
+	to[i];
+    ideal_quotient = quotient(J0,reached);
+	printf("Ideal quotient: ");
+	ideal_quotient;
+	//temp = to[i]+ideal_quotient;
+	temp = groebner(to[i]+ideal_quotient);
+	new[i] = temp[1];
+	printf("Newly reached states: ");
+	new[i];
+    if(new[i] == 1 || i > 25) {
+		break;
+	}
+	reached = product(reached,new[i]);
+	printf("Reached state polynomial: ");
+	reached;
+	from[i+1] = subst(new[i],T,S);
+}
+
+"BFS Depth", i-2;
+"Final  reachable states: ", reached;
