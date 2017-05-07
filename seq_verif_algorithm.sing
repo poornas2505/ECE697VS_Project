@@ -28,29 +28,29 @@ reached = subst(from[1],S,T);
 reached;
 int i = 0;
 while(1){
-    i++;
-	J = poly_func,from[i];
-    G = groebner(J);
-	G;
-	to[i] = G[1];
-	"To ", i;
-	to[i];
-    ideal_quotient = quotient(J0,reached);
-	printf("Ideal quotient: ");
-	ideal_quotient;
-	//temp = to[i]+ideal_quotient;
-	temp = groebner(to[i]+ideal_quotient);
-	new[i] = temp[1];
-	printf("Newly reached states: ");
-	new[i];
-    if(new[i] == 1 || i > 25) {
-		break;
-	}
-	reached = product(reached,new[i]);
-	printf("Reached state polynomial: ");
-	reached;
-	from[i+1] = subst(new[i],T,S);
+        i++;
+        J = poly_func,from[i];
+        G = groebner(J);
+        G;
+        to[i] = G[1];
+        "To ", i;
+        to[i];
+        ideal_quotient = quotient(J0,reached);
+        printf("Ideal quotient: ");
+        ideal_quotient;
+        //temp = to[i]+ideal_quotient;
+        temp = groebner(to[i]+ideal_quotient);
+        new[i] = temp[1];
+        printf("Newly reached states: ");
+        new[i];
+        if(new[i] == 1 || i > 25) {
+            break;
+            }
+        reached = product(reached,new[i]);
+        printf("Reached state polynomial: ");
+        reached;
+        from[i+1] = subst(new[i],T,S);
 }
 
 "BFS Depth", i-2;
-"Final  reachable states: ", reached;
+"Final reachable states: ", reached;
