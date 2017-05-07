@@ -72,12 +72,31 @@ for raw_line in raw_lines:
     if "OUTORDER" in raw_line:
         continue
 
+    ## Remove special characters (Currently code supports '[' or ']') from starting/ ending character of a net - Singular doesn't support otherwise
+    temp_line = re.sub('[^a-zA-Z0-9_=!\[\]+\s;]',' * ',raw_line)
+    temp2_line = re.sub('[^a-zA-Z0-9_=!\[\]*\s;]',' + ',temp_line)
+    temp3_line = re.sub('[^a-zA-Z0-9_=!\[\]*+\s]',' ;',temp2_line)
+    clean_line = re.sub(' +',' ',temp3_line) #To remove more than one whitespace
+    clean_line = clean_line.split(' ')
+    net_index = 0
+    for net in clean_line:
+        if('[' in net):
+            if('!' in net):
+                net = re.sub('[^a-zA-Z0-9_=!*+\]\s;]','!tmp_',net)
+                print "![] case found"
+            else:
+                net = re.sub('[^a-zA-Z0-9_=!*+\]\s;]','tmp_',net)
+            net = re.sub('[^a-zA-Z0-9_=!*+\s;]','',net)
+            clean_line[net_index] = net
+        net_index = net_index + 1
+    print clean_line
+    raw_line = ' '.join(clean_line)
+
     ## Extracting nets to create vanishing polynomials ##
     temp_nets = re.split(r"[^A-Za-z0-9_\[\]]",raw_line)
     temp_nets = ' '.join(temp_nets)
     temp_nets = re.sub(' +',' ',temp_nets) #To remove more than whitespace
     temp_nets = temp_nets.split(' ')
-    print temp_nets
     for net in temp_nets:
         if(net == ''):
             continue
@@ -233,7 +252,7 @@ net_list = ' '.join(net_list)
 net_list = re.sub(' +',' ',net_list) #To remove more than whitespace
 net_list = net_list.split(' ')
 net_list = list(set(net_list))
-print net_list
+#print net_list
 
 fw.write("ring r = (%d, a), (%s, S, T), lp;\n"%(2**int(sys.argv[2]), ', '.join(net_list)))
 fw.write("ideal J0 = T^%d + T;\n"%(2**int(sys.argv[2])))
