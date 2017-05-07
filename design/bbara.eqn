@@ -1,0 +1,37 @@
+INORDER = bbara_in_3_ bbara_in_2_ bbara_in_1_ bbara_in_0_ clock n_n60 n_n61 
+n_n62 n_n63;
+OUTORDER = n_n23 clock n_n24 n_n25 n_n26 bbara_out_1_ bbara_out_0_;
+bbara_out_1_ = !n_n61*n_n63*[27];
+bbara_out_0_ = n_n61*n_n63*[36];
+n_n23 = n_n60*[172] + n_n60*[52] + [173];
+n_n24 = [31]*[174] + [177] + [43];
+n_n25 = !bbara_in_2_*[39] + !bbara_in_2_*[38] + [37];
+n_n26 = [182] + [14];
+[27] = !bbara_in_0_ + !bbara_in_1_ + bbara_in_2_;
+[36] = bbara_in_3_*!bbara_in_2_ + !bbara_in_0_ + !bbara_in_1_;
+[52] = !bbara_in_3_*!bbara_in_2_*n_n61*!n_n62;
+[172] = bbara_in_2_*n_n62 + !bbara_in_0_ + !bbara_in_1_;
+[173] = [21]*[169] + [29]*[168];
+[31] = bbara_in_1_*bbara_in_0_*!n_n61 + !n_n60*n_n61;
+[43] = bbara_in_3_*!bbara_in_2_*[175] + bbara_in_3_*!bbara_in_2_*[21];
+[174] = n_n62*!bbara_in_2_;
+[177] = bbara_in_1_*bbara_in_0_*!n_n61*[24] + !bbara_in_0_*n_n61 + !
+bbara_in_1_*n_n61;
+[37] = !bbara_in_0_*n_n62 + !bbara_in_1_*n_n62;
+[38] = bbara_in_3_*!n_n62*!n_n63*[179];
+[39] = !bbara_in_3_*!n_n60*n_n62 + !bbara_in_3_*[40];
+[14] = [21]*[22]*[181] + [22]*[25];
+[182] = [24]*[180] + n_n63*[35];
+[21] = bbara_in_1_*bbara_in_0_*!n_n61;
+[29] = bbara_in_3_*!n_n62*!n_n63 + !bbara_in_3_*n_n62 + bbara_in_2_;
+[22] = bbara_in_3_*!bbara_in_2_;
+[24] = bbara_in_2_*n_n60*!n_n62;
+[35] = bbara_in_2_*!n_n61 + !bbara_in_0_ + !bbara_in_1_;
+[25] = n_n61*n_n63;
+[181] = n_n62*n_n60;
+[179] = bbara_in_1_*bbara_in_0_*!n_n60*n_n61;
+[40] = bbara_in_1_*bbara_in_0_*n_n63;
+[175] = n_n61*n_n63 + n_n60*n_n61;
+[168] = bbara_in_1_*bbara_in_0_*!n_n60*n_n61;
+[169] = !n_n63*bbara_in_2_;
+[180] = bbara_in_1_*bbara_in_0_*n_n61;
