@@ -14,6 +14,33 @@ import re
 
 def poly_gen(bool_eqn):
     poly = []
+    if(len(bool_eqn) == 8):
+        if(bool_eqn[3] == '*' and bool_eqn[5] == '*'):
+            print bool_eqn
+            if '!' in bool_eqn[2]:
+                bool_eqn[2] = re.sub('[^a-zA-Z0-9_\s]','',bool_eqn[2])
+                bool_eqn[2] = "("+str(bool_eqn[2])+" + 1)"
+            if '!' in bool_eqn[4]:
+                bool_eqn[4] = re.sub('[^a-zA-Z0-9_\s]','',bool_eqn[4])
+                bool_eqn[4] = "("+str(bool_eqn[4])+" + 1)"
+            if '!' in bool_eqn[6]:
+                bool_eqn[6] = re.sub('[^a-zA-Z0-9_\s]','',bool_eqn[6])
+                bool_eqn[6] = "("+str(bool_eqn[6])+" + 1)"
+            poly.append(str(bool_eqn[0]) + " + " + str(bool_eqn[2]) + " * "  + str(bool_eqn[4]) + " * " + str(bool_eqn[6]) + ";")
+            print poly
+
+        if(bool_eqn[3] == '+' and bool_eqn[5] == '+'):
+            if '!' in bool_eqn[2]:
+                bool_eqn[2] = re.sub('[^a-zA-Z0-9_\s]','',bool_eqn[2])
+                bool_eqn[2] = "("+str(bool_eqn[2])+" + 1)"
+            if '!' in bool_eqn[4]:
+                bool_eqn[4] = re.sub('[^a-zA-Z0-9_\s]','',bool_eqn[4])
+                bool_eqn[4] = "("+str(bool_eqn[4])+" + 1)"
+            if '!' in bool_eqn[6]:
+                bool_eqn[6] = re.sub('[^a-zA-Z0-9_\s]','',bool_eqn[6])
+                bool_eqn[6] = "("+str(bool_eqn[6])+" + 1)"
+            poly.append(str(bool_eqn[0]) + " + " + str(bool_eqn[2]) + " + " + str(bool_eqn[4]) + " + " + str(bool_eqn[6]) + " + " + str(bool_eqn[2]) + " * " + str(bool_eqn[4]) + " + " + str(bool_eqn[4]) + " * " + str(bool_eqn[6]) + " + " + str(bool_eqn[2]) + " * " + str(bool_eqn[6]) + " + " + str(bool_eqn[2]) + " * " + str(bool_eqn[4]) + " * " + str(bool_eqn[6]) + ";")
+
     if(len(bool_eqn) == 6):
         temp_bool_eqn = ' '.join(bool_eqn)
         temp_bool_eqn = re.sub('[^a-zA-Z0-9_=\[\]+*\s;]','! ',temp_bool_eqn)
@@ -89,7 +116,7 @@ for raw_line in raw_lines:
             net = re.sub('[^a-zA-Z0-9_=!*+\s;]','',net)
             clean_line[net_index] = net
         net_index = net_index + 1
-    print clean_line
+    #print clean_line
     raw_line = ' '.join(clean_line)
 
     ## Extracting nets to create vanishing polynomials ##
@@ -125,7 +152,7 @@ for raw_line in raw_lines:
 
     #************* AND Gate Reduction - STARTS HERE ************#
     word_index = 0
-    for word in line:
+    for word in line: #Loop 1 starts here
         #print "Word index is: ",(word_index)
         temp_list = []
         #word_index = line.index(word) #Using this causes problem when there are multiple occurances of same element
@@ -144,17 +171,37 @@ for raw_line in raw_lines:
         if word == ';':
             word_index = word_index + 1
             continue
+        print word_index
+
+        temp_list = []
+        if word_index < len(line)-5:
+            if (line[word_index + 1] == '*') and (line[word_index + 3] == '*'):
+                temp_list.insert(0, 't_net_'+str(net_cnt))
+                temp_list.insert(1, '=')
+                temp_list.insert(2, word)
+                temp_list.insert(3, '*')
+                temp_list.insert(4, line[word_index+2])
+                temp_list.insert(5, '*')
+                temp_list.insert(6, line[word_index+4])
+                temp_list.insert(7, ';')
+                bool_list.append(temp_list)
+
+                line[word_index] = ' '
+                line[word_index+1] = ' '
+                line[word_index+2] = ' '
+                line[word_index+3] = ' '
+                line[word_index+4] = 't_net_'+str(net_cnt)
+                net_list.append('t_net_'+str(net_cnt))
+                net_cnt = net_cnt + 1
+                word_index = word_index + 1
+                continue
+
         if word_index >= len(line)-3:
             word_index = word_index + 1
             continue
 
+        temp_list = []
         if line[word_index + 1] == '*':
-            #temp_list[0] = 't_net_'+str(net_cnt)
-            #temp_list[1] = '='
-            #temp_list[2] = word
-            #temp_list[3] = '*'
-            #temp_list[4] = line[word_index+2]
-
             temp_list.insert(0, 't_net_'+str(net_cnt))
             temp_list.insert(1, '=')
             temp_list.insert(2, word)
@@ -171,6 +218,7 @@ for raw_line in raw_lines:
             net_list.append('t_net_'+str(net_cnt))
             net_cnt = net_cnt + 1
         word_index = word_index + 1
+    ##Loop 1 Ends here
 
     line = ' '.join(line)
     line = re.sub(' +',' ',line) #To remove more than whitespace
@@ -207,10 +255,35 @@ for raw_line in raw_lines:
         if word == ';':
             word_index = word_index + 1
             continue
+
+        temp_list = []
+        if word_index < len(line)-5:
+            if (line[word_index + 1] == '+') and (line[word_index + 3] == '+'):
+                temp_list.insert(0, 't_net_'+str(net_cnt))
+                temp_list.insert(1, '=')
+                temp_list.insert(2, word)
+                temp_list.insert(3, '+')
+                temp_list.insert(4, line[word_index+2])
+                temp_list.insert(5, '+')
+                temp_list.insert(6, line[word_index+4])
+                temp_list.insert(7, ';')
+                bool_list.append(temp_list)
+
+                line[word_index] = ' '
+                line[word_index+1] = ' '
+                line[word_index+2] = ' '
+                line[word_index+3] = ' '
+                line[word_index+4] = 't_net_'+str(net_cnt)
+                net_list.append('t_net_'+str(net_cnt))
+                net_cnt = net_cnt + 1
+                word_index = word_index + 1
+                continue
+
         if word_index >= len(line)-3:
             word_index = word_index + 1
             continue
 
+        temp_list = []
         if line[word_index + 1] == '+':
             temp_list.insert(0, 't_net_'+str(net_cnt))
             temp_list.insert(1, '=')
