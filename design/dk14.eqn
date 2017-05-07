@@ -1,0 +1,19 @@
+INORDER = dk17_in_1_ dk17_in_0_ clock n_n48 n_n49 n_n50;
+OUTORDER = n_n21 clock n_n22 n_n23 dk17_out_2_ dk17_out_1_ dk17_out_0_;
+dk17_out_2_ = dk17_in_0_*[23] + [131];
+dk17_out_1_ = !dk17_in_0_*[27] + [16];
+dk17_out_0_ = n_n48*!n_n49*!n_n50 + !dk17_in_0_*!n_n49*!n_n50 + dk17_in_0_*
+n_n49*!n_n50;
+n_n21 = n_n50*[22];
+n_n22 = !dk17_in_0_*n_n49*!n_n50 + [127];
+n_n23 = dk17_in_1_*[24] + [37] + [36];
+[23] = n_n48*!n_n50 + dk17_in_1_*n_n48 + n_n49;
+[131] = !dk17_in_1_*!n_n48*n_n49*!n_n50 + !dk17_in_1_*n_n48*n_n49*n_n50;
+[27] = n_n48*n_n49*!n_n50 + dk17_in_1_*n_n50 + dk17_in_1_*n_n49;
+[16] = dk17_in_0_*!n_n48*!n_n49*!n_n50;
+[22] = n_n48*!n_n49 + !dk17_in_0_*!n_n48 + dk17_in_1_;
+[127] = dk17_in_0_*!n_n48*!n_n50 + !dk17_in_1_*n_n48*n_n50 + !dk17_in_1_*
+dk17_in_0_*!n_n48;
+[24] = dk17_in_0_*!n_n48*!n_n49 + !n_n49*!n_n50 + n_n48*!n_n50;
+[36] = dk17_in_0_*!n_n48*n_n49*!n_n50;
+[37] = !dk17_in_1_*dk17_in_0_*n_n48*n_n50;
