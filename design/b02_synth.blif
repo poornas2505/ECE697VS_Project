@@ -1,0 +1,55 @@
+# Benchmark "b02.blif" written by ABC on Mon May  8 11:56:58 2017
+.model b02.blif
+.inputs LINEA
+.outputs U
+
+.latch         n6      U_REG  0
+.latch        n11 STATO_REG_2_  0
+.latch        n16 STATO_REG_1_  0
+.latch        n21 STATO_REG_0_  0
+
+.names STATO_REG_1_ STATO_REG_0_ n15
+00 1
+.names STATO_REG_2_ n15 n6
+11 1
+.names LINEA STATO_REG_2_ n17
+01 1
+.names LINEA STATO_REG_2_ n18
+10 1
+.names n17 n18 n19
+00 1
+.names STATO_REG_0_ n19 n20
+01 1
+.names STATO_REG_1_ n20 n21_1
+10 1
+.names LINEA STATO_REG_2_ n22
+00 1
+.names STATO_REG_0_ n22 n23
+10 1
+.names n21_1 n23 n11
+00 0
+.names STATO_REG_2_ STATO_REG_1_ n25
+01 1
+.names STATO_REG_0_ n25 n26
+01 1
+.names LINEA STATO_REG_1_ n27
+00 1
+.names STATO_REG_2_ n27 n28
+00 1
+.names STATO_REG_0_ n28 n29
+10 1
+.names n26 n29 n16
+00 0
+.names STATO_REG_0_ n18 n31
+10 1
+.names STATO_REG_1_ n31 n32
+00 1
+.names LINEA STATO_REG_0_ n33
+00 1
+.names STATO_REG_2_ n33 n34
+01 1
+.names n32 n34 n21
+00 0
+.names U_REG U
+1 1
+.end
