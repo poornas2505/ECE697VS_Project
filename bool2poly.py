@@ -167,9 +167,22 @@ for raw_line in raw_lines:
         if word == ';':
             word_index = word_index + 1
             continue
-        #print word_index
+
+        ## Checking for 2 or 3 Input gates before further processing
+        temp4_line = ' '.join(line)
+        temp4_line = re.sub(' +',' ',temp4_line) #To remove more than whitespace
+        temp4_line = temp4_line.split(' ')
+        if(len(temp4_line) == 4):
+            print "ERROR: Expression with one Element found" # Element with single variable should have got filtered earlier itself
+        if((len(temp4_line) == 6) and (temp4_line[3] == '*')):
+            bool_list.append(temp4_line)
+            break
+        if((len(temp4_line) == 8) and (temp4_line[3] == '*') and (temp4_line[3] == temp4_line[5])):
+            bool_list.append(temp4_line)
+            break
 
         temp_list = []
+
         if word_index < len(line)-5:
             if (line[word_index + 1] == '*') and (line[word_index + 3] == '*'):
                 temp_list.insert(0, 't_net_'+str(net_cnt))
@@ -251,6 +264,19 @@ for raw_line in raw_lines:
         if word == ';':
             word_index = word_index + 1
             continue
+
+        ## Checking for 2 or 3 Input gates before further processing
+        temp4_line = ' '.join(line)
+        temp4_line = re.sub(' +',' ',temp4_line) #To remove more than whitespace
+        temp4_line = temp4_line.split(' ')
+        if(len(temp4_line) == 4):
+            print "ERROR: Expression with one Element found" # Element with single variable should have got filtered earlier itself
+        if((len(temp4_line) == 6) and (temp4_line[3] == '+')):
+            bool_list.append(temp4_line)
+            break
+        if((len(temp4_line) == 8) and (temp4_line[3] == '+') and (temp4_line[3] == temp4_line[5])):
+            bool_list.append(temp4_line)
+            break
 
         temp_list = []
         if word_index < len(line)-5:
