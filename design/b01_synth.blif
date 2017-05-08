@@ -1,0 +1,92 @@
+# Benchmark "top" written by ABC on Mon May  8 11:40:48 2017
+.model top
+.inputs LINE1 LINE2
+.outputs OUTP OVERFLW
+
+.latch        n10 STATO_REG_2_  0
+.latch        n15 STATO_REG_1_  0
+.latch        n20 STATO_REG_0_  0
+.latch        n25   OUTP_REG  0
+.latch        n30 OVERFLW_REG  0
+
+.names LINE1 LINE2 n20_1
+00 1
+.names STATO_REG_0_ n20_1 n21
+01 1
+.names STATO_REG_1_ n21 n22
+00 1
+.names STATO_REG_2_ n22 n23
+11 1
+.names STATO_REG_1_ STATO_REG_0_ n24
+10 1
+.names LINE1 LINE2 n25_1
+11 1
+.names n24 n25_1 n26
+00 1
+.names STATO_REG_2_ n26 n27
+00 1
+.names n23 n27 n10
+00 0
+.names STATO_REG_0_ n25_1 n29
+10 1
+.names STATO_REG_2_ n20_1 n30_1
+11 1
+.names n29 n30_1 n31
+00 1
+.names STATO_REG_1_ n31 n32
+00 1
+.names STATO_REG_2_ n25_1 n33
+10 1
+.names n24 n33 n34
+10 1
+.names STATO_REG_2_ STATO_REG_0_ n35
+11 1
+.names n20_1 n35 n36
+01 1
+.names n34 n36 n37
+00 1
+.names n32 n37 n15
+01 0
+.names STATO_REG_2_ n24 n39
+10 1
+.names n20_1 n39 n40
+01 1
+.names STATO_REG_2_ STATO_REG_1_ n41
+00 1
+.names STATO_REG_0_ n25_1 n42
+01 1
+.names n29 n42 n43
+00 1
+.names n41 n43 n44
+11 1
+.names n40 n44 n45
+00 1
+.names n24 n25_1 n46
+11 1
+.names STATO_REG_2_ STATO_REG_1_ n47
+01 1
+.names STATO_REG_0_ n47 n30
+11 1
+.names n25_1 n30 n49
+01 1
+.names n46 n49 n50
+00 1
+.names n45 n50 n20
+11 0
+.names LINE1 LINE2 n52
+01 1
+.names LINE1 LINE2 n53
+10 1
+.names n52 n53 n54
+00 1
+.names n39 n54 n55
+00 1
+.names n39 n54 n56
+11 1
+.names n55 n56 n25
+00 0
+.names OUTP_REG OUTP
+1 1
+.names OVERFLW_REG OVERFLW
+1 1
+.end
