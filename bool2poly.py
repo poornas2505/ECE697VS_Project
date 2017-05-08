@@ -16,7 +16,6 @@ def poly_gen(bool_eqn):
     poly = []
     if(len(bool_eqn) == 8):
         if(bool_eqn[3] == '*' and bool_eqn[5] == '*'):
-            print bool_eqn
             if '!' in bool_eqn[2]:
                 bool_eqn[2] = re.sub('[^a-zA-Z0-9_\s]','',bool_eqn[2])
                 bool_eqn[2] = "("+str(bool_eqn[2])+" + 1)"
@@ -27,7 +26,6 @@ def poly_gen(bool_eqn):
                 bool_eqn[6] = re.sub('[^a-zA-Z0-9_\s]','',bool_eqn[6])
                 bool_eqn[6] = "("+str(bool_eqn[6])+" + 1)"
             poly.append(str(bool_eqn[0]) + " + " + str(bool_eqn[2]) + " * "  + str(bool_eqn[4]) + " * " + str(bool_eqn[6]) + ";")
-            print poly
 
         if(bool_eqn[3] == '+' and bool_eqn[5] == '+'):
             if '!' in bool_eqn[2]:
@@ -80,9 +78,10 @@ def poly_gen(bool_eqn):
             poly.append(str(bool_eqn[0]) + " + " + str(bool_eqn[3]) + " + 1;")
     return ' '.join(poly)
 
-#f1 = open(sys.argv[1], 'r')
-#raw_lines = f1.read().split('\n')
-#print raw_lines
+
+##*****************************************************************
+##             Main Part of the code begins here
+##*****************************************************************
 
 bool_list = []
 temp_list = []
@@ -135,18 +134,15 @@ for raw_line in raw_lines:
     temp3_line = re.sub('[^a-zA-Z0-9_=!\[\]*+\s]',' ;',temp2_line)
     clean_line = re.sub(' +',' ',temp3_line) #To remove more than whitespace
 
-    #print raw_line
-    #print temp_line
-    #print clean_line
-
     line = clean_line.split(' ')
-    #print raw_line
-    #print clean_line
-    print line
+    #print line
 
-    print len(line)
+    #print len(line)
 
     if(len(line) <= 6 and len(line) >=2):
+        bool_list.append(line)
+        continue
+    if(len(line) == 8 and (line[3] == line[5])):
         bool_list.append(line)
         continue
 
@@ -171,7 +167,7 @@ for raw_line in raw_lines:
         if word == ';':
             word_index = word_index + 1
             continue
-        print word_index
+        #print word_index
 
         temp_list = []
         if word_index < len(line)-5:
@@ -229,7 +225,7 @@ for raw_line in raw_lines:
         continue  #If an expression had only and gates initially, then this 'line' will end up having single variable.
 
     #************* AND Gate Reduction - ENDS HERE ************#
-    print "For OR Gate processing"
+    #print "For OR Gate processing"
     #print line
 
     if(len(line) <= 6 and len(line) >=2):
