@@ -1,5 +1,4 @@
-INORDER = bbara_in_3_ bbara_in_2_ bbara_in_1_ bbara_in_0_ clock n_n60 n_n61 
-n_n62 n_n63;
+INORDER = bbara_in_3_ bbara_in_2_ bbara_in_1_ bbara_in_0_ clock n_n60 n_n61 n_n62 n_n63;
 OUTORDER = n16 n21 n26 n31 bbara_out_1_ bbara_out_0_;
 bbara_out_1_ = !n21_1*n22;
 bbara_out_0_ = !n26_1*n27;
