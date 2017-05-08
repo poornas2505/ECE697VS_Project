@@ -1,0 +1,114 @@
+# Benchmark "b06.blif" written by ABC on Mon May  8 11:54:32 2017
+.model b06.blif
+.inputs EQL CONT_EQL
+.outputs CC_MUX_2_ CC_MUX_1_ USCITE_2_ USCITE_1_ ENABLE_COUNT ACKOUT
+
+.latch        n18 ACKOUT_REG  0
+.latch        n23 STATE_REG_2_  0
+.latch        n28 STATE_REG_1_  0
+.latch        n33 STATE_REG_0_  0
+.latch        n38 CC_MUX_REG_2_  0
+.latch        n43 CC_MUX_REG_1_  0
+.latch        n48 USCITE_REG_2_  0
+.latch        n53 USCITE_REG_1_  0
+.latch        n57 ENABLE_COUNT_REG  0
+
+.names STATE_REG_2_ STATE_REG_1_ n36
+11 1
+.names STATE_REG_0_ n36 n37
+11 1
+.names CONT_EQL n37 n38_1
+00 1
+.names STATE_REG_2_ STATE_REG_0_ n39
+00 1
+.names EQL STATE_REG_1_ n40
+01 1
+.names n39 n40 n41
+11 1
+.names n38_1 n41 n18
+00 0
+.names STATE_REG_1_ STATE_REG_0_ n43_1
+00 1
+.names EQL n43_1 n44
+00 1
+.names STATE_REG_2_ n44 n45
+10 1
+.names STATE_REG_2_ STATE_REG_1_ n46
+00 1
+.names STATE_REG_0_ n46 n47
+11 1
+.names EQL n47 n48_1
+01 1
+.names n45 n48_1 n23
+00 0
+.names STATE_REG_1_ n39 n50
+11 1
+.names EQL STATE_REG_2_ n51
+10 1
+.names STATE_REG_0_ n51 n52
+11 1
+.names n50 n52 n53_1
+00 1
+.names STATE_REG_2_ STATE_REG_0_ n54
+10 1
+.names EQL STATE_REG_1_ n55
+00 1
+.names n54 n55 n56
+11 1
+.names EQL STATE_REG_1_ n57_1
+11 1
+.names n56 n57_1 n58
+00 1
+.names n53_1 n58 n28
+11 0
+.names STATE_REG_1_ STATE_REG_0_ n60
+11 1
+.names STATE_REG_1_ n39 n61
+01 1
+.names n60 n61 n62
+00 1
+.names n44 n62 n33
+01 0
+.names STATE_REG_0_ n57_1 n64
+01 1
+.names n45 n47 n65
+00 1
+.names n64 n65 n38
+01 0
+.names STATE_REG_2_ STATE_REG_0_ n67
+11 1
+.names n39 n67 n68
+00 1
+.names EQL STATE_REG_0_ n69
+10 1
+.names STATE_REG_1_ n69 n70
+10 1
+.names EQL STATE_REG_1_ n71
+10 1
+.names n70 n71 n72
+00 1
+.names n68 n72 n43
+11 0
+.names STATE_REG_2_ n57_1 n74
+11 1
+.names n56 n74 n48
+00 0
+.names EQL n36 n76
+10 1
+.names n62 n76 n53
+11 0
+.names CC_MUX_REG_2_ CC_MUX_2_
+1 1
+.names CC_MUX_REG_1_ CC_MUX_1_
+1 1
+.names USCITE_REG_2_ USCITE_2_
+1 1
+.names USCITE_REG_1_ USCITE_1_
+1 1
+.names ENABLE_COUNT_REG ENABLE_COUNT
+1 1
+.names ACKOUT_REG ACKOUT
+1 1
+.names n18 n57
+1 1
+.end
