@@ -1,0 +1,148 @@
+.model top
+.inputs bbara_in_3_ bbara_in_2_ bbara_in_1_ bbara_in_0_ clock
+.outputs bbara_out_1_ bbara_out_0_
+
+.latch        n16      n_n60  0
+.latch        n21      n_n61  0
+.latch        n26      n_n62  0
+.latch        n31      n_n63  0
+
+.names bbara_in_2_ bbara_in_1_ n20
+01 1
+.names bbara_in_0_ n20 n21_1
+11 1
+.names n_n61 n_n63 n22
+01 1
+.names n21_1 n22 bbara_out_1_
+01 1
+.names bbara_in_3_ bbara_in_2_ n24
+10 1
+.names bbara_in_1_ n24 n25
+10 1
+.names bbara_in_0_ n25 n26_1
+11 1
+.names n_n61 n_n63 n27
+11 1
+.names n26_1 n27 bbara_out_0_
+01 1
+.names bbara_in_1_ bbara_in_0_ n29
+11 1
+.names n_n61 n29 n30
+01 1
+.names bbara_in_2_ n_n63 n31_1
+10 1
+.names n30 n31_1 n32
+11 1
+.names bbara_in_3_ n_n62 n33
+01 1
+.names n_n62 n_n63 n34
+00 1
+.names bbara_in_3_ n34 n35
+11 1
+.names n33 n35 n36
+00 1
+.names bbara_in_2_ n36 n37
+01 1
+.names n_n60 n29 n38
+01 1
+.names n_n61 n38 n39
+11 1
+.names n37 n39 n40
+01 1
+.names n32 n40 n41
+00 1
+.names bbara_in_3_ bbara_in_2_ n42
+00 1
+.names n_n61 n42 n43
+11 1
+.names n_n62 n43 n44
+01 1
+.names bbara_in_2_ n_n62 n45
+11 1
+.names bbara_in_1_ n45 n46
+10 1
+.names bbara_in_0_ n46 n47
+11 1
+.names n44 n47 n48
+01 1
+.names n_n60 n48 n49
+10 1
+.names n41 n49 n16
+10 0
+.names n_n61 n29 n51
+10 1
+.names bbara_in_2_ n_n60 n52
+11 1
+.names n_n62 n52 n53
+01 1
+.names n_n61 n53 n54
+01 1
+.names n29 n54 n55
+11 1
+.names n51 n55 n56
+00 1
+.names n_n60 n_n63 n57
+00 1
+.names n_n61 n57 n58
+10 1
+.names n30 n58 n59
+00 1
+.names bbara_in_2_ n59 n60
+00 1
+.names bbara_in_3_ n60 n61
+11 1
+.names n_n60 n_n61 n62
+01 1
+.names n30 n62 n63
+00 1
+.names bbara_in_2_ n_n62 n64
+01 1
+.names n63 n64 n65
+01 1
+.names n61 n65 n66
+00 1
+.names n56 n66 n21
+11 0
+.names n_n62 n29 n68
+10 1
+.names n35 n39 n69
+11 1
+.names n_n63 n29 n70
+11 1
+.names n_n60 n_n62 n71
+01 1
+.names n70 n71 n72
+00 1
+.names bbara_in_3_ n72 n73
+00 1
+.names n69 n73 n74
+00 1
+.names bbara_in_2_ n74 n75
+00 1
+.names n68 n75 n26
+00 0
+.names n_n60 n_n62 n77
+11 1
+.names n30 n77 n78
+11 1
+.names n27 n78 n79
+00 1
+.names n24 n79 n80
+10 1
+.names bbara_in_2_ n_n61 n81
+10 1
+.names bbara_in_1_ n81 n82
+10 1
+.names bbara_in_0_ n82 n83
+11 1
+.names n_n63 n83 n84
+10 1
+.names n_n61 n29 n85
+11 1
+.names n53 n85 n86
+11 1
+.names n84 n86 n87
+00 1
+.names n80 n87 n31
+01 0
+.end
