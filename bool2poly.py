@@ -1,13 +1,32 @@
 #!/usr/bin/env python
 
-##*******************************************************************
+##************************************************************************
+#            ECE697VS - Hardware Verification Course Project
+##************************************************************************
+#Name: bool2poly.py
+#Authors: Poorna Chandra   (pshivalingap@umass.edu)
+#         Gautam Balgovind (gbalgovind@umass.edu)
+#         Navya Gurudat    (navyagurudat@umass.edu)
+#Mentor:  Prof. Priyank Kalla
+#Date: 7th May, 2017
+#Usage: ./bool2poly <filename.eqn> <#of FlipFlops in Original BLIF file>
+#       Upon running the above script polynomial file with the name
+#       <filename.eqn.ply> is generated
+#Description: This script converts eqn file generated from SIS or ABC
+#             to corresponding polynomial format. The output file *.ply
+#             will have ring declaraction, polynomials corresponding to
+#             boolean equations in eqn file, Ideal containing all these
+#             polynomials including vanishing polynomials for all the
+#             internal wires and word level vanishing polynomial for
+#             next (T) and current state (S) variables.
+#Note:    This script was originally written to generate polynomial
+#         equivalents of Boolean equations which was needed for our course
+#         Project on "Reachability analysis of Sequntial Circuits".#
 #
-#
-#
-#
-#
-#
-##*******************************************************************
+#Github Link: For more information on this, please check the comments and
+#             History of the commits at following link
+#             https://github.com/poornas2505/ECE697VS_Project
+##************************************************************************
 
 import sys
 import re
@@ -115,7 +134,6 @@ for raw_line in raw_lines:
             net = re.sub('[^a-zA-Z0-9_=!*+\s;]','',net)
             clean_line[net_index] = net
         net_index = net_index + 1
-    #print clean_line
     raw_line = ' '.join(clean_line)
 
     ## Extracting nets to create vanishing polynomials ##
@@ -127,17 +145,13 @@ for raw_line in raw_lines:
         if(net == ''):
             continue
         net_list.append(net)
-    #print raw_line
-    #print clean_line
+
     temp_line = re.sub('[^a-zA-Z0-9_=!\[\]+\s;]',' * ',raw_line)
     temp2_line = re.sub('[^a-zA-Z0-9_=!\[\]*\s;]',' + ',temp_line)
     temp3_line = re.sub('[^a-zA-Z0-9_=!\[\]*+\s]',' ;',temp2_line)
     clean_line = re.sub(' +',' ',temp3_line) #To remove more than whitespace
 
     line = clean_line.split(' ')
-    #print line
-
-    #print len(line)
 
     if(len(line) <= 6 and len(line) >=2):
         bool_list.append(line)
@@ -149,7 +163,6 @@ for raw_line in raw_lines:
     #************* AND Gate Reduction - STARTS HERE ************#
     word_index = 0
     for word in line: #Loop 1 starts here
-        #print "Word index is: ",(word_index)
         temp_list = []
         #word_index = line.index(word) #Using this causes problem when there are multiple occurances of same element
         if word_index == 0:
@@ -222,8 +235,6 @@ for raw_line in raw_lines:
             line[word_index] = ' '
             line[word_index+1] = ' '
             line[word_index+2] = 't_net_'+str(net_cnt)
-            #print temp_list
-            #print line
             net_list.append('t_net_'+str(net_cnt))
             net_cnt = net_cnt + 1
         word_index = word_index + 1
@@ -238,8 +249,6 @@ for raw_line in raw_lines:
         continue  #If an expression had only and gates initially, then this 'line' will end up having single variable.
 
     #************* AND Gate Reduction - ENDS HERE ************#
-    #print "For OR Gate processing"
-    #print line
 
     if(len(line) <= 6 and len(line) >=2):
         bool_list.append(line)
@@ -260,6 +269,7 @@ for raw_line in raw_lines:
             continue
         if word == '*':
             print "Error: AND Gates still present after reduction"
+            print line
             continue
         if word == ';':
             word_index = word_index + 1
@@ -318,8 +328,6 @@ for raw_line in raw_lines:
             line[word_index] = ' '
             line[word_index+1] = ' '
             line[word_index+2] = 't_net_'+str(net_cnt)
-            #print temp_list
-            #print line
             net_list.append('t_net_'+str(net_cnt))
             net_cnt = net_cnt + 1
         word_index = word_index + 1
@@ -331,7 +339,6 @@ for raw_line in raw_lines:
     if(len(line) == 4):
         bool_list.append(line)
         continue  #If an expression had only OR gates initially, then this 'line' will end up having single variable.
-#print bool_list
 
 ##*****************************************************************
 ##                      Post-Processing
@@ -342,12 +349,10 @@ poly_num = 0
 fw = open(str(sys.argv[1])+".ply", "w")
 
 ## Writing Ring declaration and for creating vanishing Polynomials ##
-#print net_list
 net_list = ' '.join(net_list)
 net_list = re.sub(' +',' ',net_list) #To remove more than whitespace
 net_list = net_list.split(' ')
 net_list = list(set(net_list))
-#print net_list
 
 fw.write("ring r = (%d, a), (%s, S, T), lp;\n"%(2**int(sys.argv[2]), ', '.join(net_list)))
 fw.write("ideal J0 = T^%d + T;\n"%(2**int(sys.argv[2])))
