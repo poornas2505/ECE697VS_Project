@@ -1,0 +1,88 @@
+# Benchmark "top" written by ABC on Mon May  8 16:00:14 2017
+.model top
+.inputs beecount_in_0_ beecount_in_1_ beecount_in_2_ clock
+.outputs beecount_out_0_ beecount_out_1_ beecount_out_2_ beecount_out_3_
+
+.latch        n18      n_n50  2
+.latch        n23      n_n51  2
+.latch        n28      n_n52  2
+
+.names beecount_in_1_ n_n50 n18_1
+00 1
+.names n_n51 n_n52 n19
+01 1
+.names n18_1 n19 n20
+11 1
+.names beecount_in_0_ n20 beecount_out_0_
+00 1
+.names n_n51 n_n52 n22
+11 1
+.names beecount_in_2_ n22 n23_1
+01 1
+.names beecount_in_0_ n23_1 beecount_out_2_
+00 1
+.names n_n50 n_n51 n25
+11 1
+.names n_n51 n_n52 n26
+00 1
+.names n25 n26 n27
+00 1
+.names beecount_in_1_ n27 n28_1
+01 1
+.names beecount_in_2_ n28_1 n29
+10 1
+.names beecount_in_0_ n29 n18
+01 1
+.names beecount_in_2_ n_n50 n31
+11 1
+.names beecount_in_2_ n_n50 n32
+00 1
+.names n31 n32 n33
+00 1
+.names n_n52 n33 n34
+00 1
+.names beecount_in_1_ n34 n35
+11 1
+.names n_n50 n_n51 n36
+00 1
+.names beecount_in_1_ n36 n37
+10 1
+.names beecount_in_2_ n37 n38
+10 1
+.names beecount_in_2_ n_n50 n39
+01 1
+.names n38 n39 n40
+00 1
+.names n_n52 n40 n41
+10 1
+.names n35 n41 n42
+00 1
+.names beecount_in_0_ n42 n23
+00 1
+.names beecount_in_2_ n_n51 n44
+11 1
+.names beecount_in_2_ n_n52 n45
+01 1
+.names n44 n45 n46
+00 1
+.names n_n50 n46 n47
+00 1
+.names beecount_in_1_ n47 n48
+11 1
+.names n_n52 n36 n49
+10 1
+.names beecount_in_2_ n49 n50
+11 1
+.names beecount_in_2_ n25 n51
+01 1
+.names n50 n51 n52
+00 1
+.names n48 n52 n53
+01 1
+.names beecount_in_0_ n53 n28
+00 1
+.names beecount_out_0_ beecount_out_1_
+0 1
+.names beecount_out_2_ beecount_out_3_
+0 1
+.end
