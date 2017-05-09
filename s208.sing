@@ -1,0 +1,99 @@
+LIB "teachstd.lib";
+LIB "general.lib";
+LIB "schubert.lib";
+LIB "findifs.lib";
+ring r = (32, a), (tmp_34, tmp_30, tmp_32, t_net_2, t_net_3, t_net_0, t_net_1, s208_in_10_, n_n46, n_n47, n_n48, n_n49, tmp_18, tmp_113, tmp_112, tmp_111, n_n26, n_n27, n_n24, n_n25, n_n23, tmp_24, tmp_23, tmp_29, s208_in_9_, tmp_109, n_n50, S, T), lp;
+ideal from, to, new;
+ideal reached;
+ideal J;
+ideal G;
+ideal J0 = T^32+T;
+ideal ideal_quotient;
+ideal temp;
+
+poly f_0 = n_n23 + (n_n46 + 1) + s208_in_9_ + (s208_in_10_ + 1) + (n_n46 + 1) * s208_in_9_ + s208_in_9_ * (s208_in_10_ + 1) + (n_n46 + 1) * (s208_in_10_ + 1) + (n_n46 + 1) * s208_in_9_ * (s208_in_10_ + 1);
+poly f_1 = t_net_0 + n_n46 * (n_n47 + 1) * tmp_18;
+poly f_2 = t_net_1 + (n_n46 + 1) * n_n47 * tmp_18;
+poly f_3 = n_n24 + t_net_0 + t_net_1 + t_net_0 * t_net_1;
+poly f_4 = t_net_2 + tmp_24 * tmp_109;
+poly f_5 = n_n25 + t_net_2 + tmp_34 + t_net_2 * tmp_34;
+poly f_6 = t_net_3 + tmp_23 * tmp_111;
+poly f_7 = n_n26 + t_net_3 + tmp_32 + t_net_3 * tmp_32;
+poly f_8 = n_n27 + tmp_30 + tmp_29 + tmp_30 * tmp_29;
+poly f_9 = tmp_18 + s208_in_10_ * s208_in_9_ + s208_in_10_;
+poly f_10 = tmp_24 + 1 + n_n47 * n_n46;
+poly f_11 = tmp_34 + (n_n23 + 1) * n_n47 * (n_n48 + 1);
+poly f_12 = tmp_109 + s208_in_10_ * (s208_in_9_ + 1) * n_n48;
+poly f_13 = tmp_23 + (n_n48 + 1) + (n_n47 + 1) + (n_n46 + 1) + (n_n48 + 1) * (n_n47 + 1) + (n_n47 + 1) * (n_n46 + 1) + (n_n48 + 1) * (n_n46 + 1) + (n_n48 + 1) * (n_n47 + 1) * (n_n46 + 1);
+poly f_14 = tmp_32 + (n_n23 + 1) * n_n47 * tmp_112;
+poly f_15 = tmp_111 + s208_in_10_ * (s208_in_9_ + 1) * n_n49;
+poly f_16 = tmp_29 + (n_n23 + 1) * n_n47 * tmp_113;
+poly f_17 = tmp_30 + (s208_in_9_ + 1) * (n_n46 + 1) * n_n50;
+poly f_18 = tmp_113 + n_n49 * n_n48;
+poly f_19 = tmp_112 + n_n49 * n_n48 + n_n48;
+poly f_van_20 = tmp_34^2 - tmp_34;
+poly f_van_21 = tmp_30^2 - tmp_30;
+poly f_van_22 = tmp_32^2 - tmp_32;
+poly f_van_23 = t_net_2^2 - t_net_2;
+poly f_van_24 = t_net_3^2 - t_net_3;
+poly f_van_25 = t_net_0^2 - t_net_0;
+poly f_van_26 = t_net_1^2 - t_net_1;
+poly f_van_27 = s208_in_10_^2 - s208_in_10_;
+poly f_van_28 = n_n46^2 - n_n46;
+poly f_van_29 = n_n47^2 - n_n47;
+poly f_van_30 = n_n48^2 - n_n48;
+poly f_van_31 = n_n49^2 - n_n49;
+poly f_van_32 = tmp_18^2 - tmp_18;
+poly f_van_33 = tmp_113^2 - tmp_113;
+poly f_van_34 = tmp_112^2 - tmp_112;
+poly f_van_35 = tmp_111^2 - tmp_111;
+poly f_van_36 = n_n26^2 - n_n26;
+poly f_van_37 = n_n27^2 - n_n27;
+poly f_van_38 = n_n24^2 - n_n24;
+poly f_van_39 = n_n25^2 - n_n25;
+poly f_van_40 = n_n23^2 - n_n23;
+poly f_van_41 = tmp_24^2 - tmp_24;
+poly f_van_42 = tmp_23^2 - tmp_23;
+poly f_van_43 = tmp_29^2 - tmp_29;
+poly f_van_44 = s208_in_9_^2 - s208_in_9_;
+poly f_van_45 = tmp_109^2 - tmp_109;
+poly f_van_46 = n_n50^2 - n_n50;
+poly f_van_47 = T^32- T;
+poly f_van_48 = S^32- S;
+poly f_49 = S + n_n46 + n_n47*a + n_n48*a^2 + n_n49*a^3 + n_n50*a^4;
+poly f_50 = T + n_n23 + n_n24*a + n_n25*a^2 + n_n26*a^3 + n_n27*a^4;
+
+ideal poly_func = f_0,  f_1,  f_2,  f_3,  f_4,  f_5,  f_6,  f_7,  f_8,  f_9,  f_10,  f_11,  f_12,  f_13,  f_14,  f_15,  f_16,  f_17,  f_18,  f_19,  f_van_20,  f_van_21,  f_van_22,  f_van_23,  f_van_24,  f_van_25,  f_van_26,  f_van_27,  f_van_28,  f_van_29,  f_van_30,  f_van_31,  f_van_32,  f_van_33,  f_van_34,  f_van_35,  f_van_36,  f_van_37,  f_van_38,  f_van_39,  f_van_40,  f_van_41,  f_van_42,  f_van_43,  f_van_44,  f_van_45,  f_van_46,  f_van_47,  f_van_48 , f_49, f_50;
+
+
+from[1] = S-0;
+reached = subst(from[1],S,T);
+reached;
+int i = 0;
+while(1){
+        i++;
+        J = poly_func,from[i];
+        G = groebner(J);
+        G;
+        to[i] = G[1];
+        "To ", i;
+        to[i];
+        ideal_quotient = quotient(J0,reached);
+        printf("Ideal quotient: ");
+        ideal_quotient;
+        //temp = to[i]+ideal_quotient;
+        temp = groebner(to[i]+ideal_quotient);
+        new[i] = temp[1];
+        printf("Newly reached states: ");
+        new[i];
+        if(new[i] == 1 || i > 25) {
+            break;
+            }
+        reached = product(reached,new[i]);
+        printf("Reached state polynomial: ");
+        reached;
+        from[i+1] = subst(new[i],T,S);
+}
+
+"BFS Depth", i-2;
+"Final reachable states: ", reached;
