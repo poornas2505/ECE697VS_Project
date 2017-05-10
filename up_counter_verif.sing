@@ -1,0 +1,74 @@
+LIB "teachstd.lib";
+LIB "general.lib";
+LIB "schubert.lib";
+LIB "findifs.lib";
+ring r = (8,a),(s0,s1,s2,r0,r1,r2,r3,r4,r5,r6,r7,n0,n1,n2,S,T),lp;
+ideal from, to, new;
+ideal reached;
+ideal J;
+ideal G;
+ideal J0 = T^8+T;
+ideal ideal_quotient;
+ideal temp;
+poly f1 = r0+s1*s0;
+poly f2 = r1+s0+1;
+poly f3 = r2+s2*r1;
+poly f4 = n2+r0+r2+r0*r2;
+poly f5 = r3+s2+s1+s2*s1;
+poly f6 = r4+r3+1;
+poly f7 = r5+r4*s0;
+poly f8 = r6+s0+1;
+poly f9 = r7+s1*r6;
+poly f10 = n1+r5+r7+r5*r7;
+poly f11 = n0+s0+1;
+poly f12 = S+s0+s1*a+s2*a^2;
+poly f13= T+n0+n1*a+n2*a^2;
+poly f15 = s0^2-s0;
+poly f16 = s1^2-s1;
+poly f17 = s2^2-s2;
+poly f18 = n0^2-n0;
+poly f19 = n1^2-n1;
+poly f20 = n2^2 - n2;
+poly f21 = r0^2 - r0;
+poly f22 = r1^2 - r1;
+poly f23 = r2^2 - r2;
+poly f24 = r3^2 - r3;
+poly f25 = r4^2 - r4;
+poly f26 = r5^2 - r5;
+poly f27 = r6^2 - r6;
+poly f28 = r7^2 - r7;
+poly f29 = S^8-S;
+poly f30 = T^8-T;
+ideal poly_func = f1,f2,f3,f4,f5,f6,f7,f8,f9,f10,f11,f12,f13,f15,f16,f17,f18,f19,f20,f21,f22,f23,f24,f25,f26,f27,f28,f29,f30;
+
+from[1] = S-0;
+reached = subst(from[1],S,T);
+reached;
+int i = 0;
+while(1){
+    i++;
+	J = poly_func,from[i];
+    G = groebner(J);
+	G;
+	to[i] = G[1];
+	"To ", i;
+	to[i];
+    ideal_quotient = quotient(J0,reached);
+	printf("Ideal quotient: ");
+	ideal_quotient;
+	//temp = to[i]+ideal_quotient;
+	temp = groebner(to[i]+ideal_quotient);
+	new[i] = temp[1];
+	printf("Newly reached states: ");
+	new[i];
+    if(new[i] == 1 || i > 25) {
+		break;
+	}
+	reached = product(reached,new[i]);
+	printf("Reached state polynomial: ");
+	reached;
+	from[i+1] = subst(new[i],T,S);
+}
+
+"BFS Depth", i-2;
+"Final  reachable states: ", reached;
